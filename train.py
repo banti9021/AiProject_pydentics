@@ -102,4 +102,25 @@ y_train_pred = rf.predict(X_train)
 cm_train = confusion_matrix(y_train, y_train_pred)
 print("Confusion Matrix (Training set):\n", cm_train)
 print("Accuracy on training set: {:.2f}%".format(accuracy_score(y_train, y_train_pred)*100))
-print("Classification Report (Training set):\n", classification_report(y_train, y_train_pred))
+print("Classification Report (Training set):\n", classification_report(y_train, y_train_pred))     
+
+
+
+import joblib
+
+# Model save karo
+joblib.dump(rf, "random_forest_model.joblib")
+
+# Agar scaler bhi use kiya hai, usko bhi save kar do
+joblib.dump(sc, "scaler.joblib")
+
+print("✅ Model and scaler saved!")
+
+
+import joblib
+
+# Load saved model
+rf = joblib.load("random_forest_model.joblib")
+
+# Load saved scaler
+sc = joblib.load("scaler.joblib")
